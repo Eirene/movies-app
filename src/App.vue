@@ -1,29 +1,34 @@
 <template>
-  <div>
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-
-    <button type="button" class="btn btn-link">Link</button>
+  <div class="container">
+    <PosterBg :poster="posterBg" />
+    <MoviesList :list="moviesList" @changePoster="onChangePoster" />
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import MoviesList from "./components/MoviesList";
+import PosterBg from "./components/PosterBg";
 
 export default {
   name: "App",
-  components: {},
-  mounted() {
-    this.fetchMovies();
+  components: {
+    MoviesList,
+    PosterBg,
+  },
+  data: () => {
+    return {
+      posterBg: "",
+    }
+  },
+  computed: {
+    ...mapGetters("movies", ["moviesList"]),
   },
   methods: {
     ...mapActions("movies", ["fetchMovies"]),
+    onChangePoster(poster) {
+      this.posterBg = poster;
+    },
   },
 };
 </script>
@@ -32,11 +37,7 @@ export default {
 @import "./src/assets/styles.scss";
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  position: relative;
+  color: white;
 }
 </style>
