@@ -1,5 +1,5 @@
 <template>
-  <div class="py-5">
+  <div>
     <div class="text-center mb-5">
       <h3>IMDB Top 250</h3>
     </div>
