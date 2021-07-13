@@ -2,7 +2,11 @@
   <div class="container py-5">
     <PosterBg :poster="posterBg" />
     <MoviesList :list="moviesList" @changePoster="onChangePoster" />
-    <MoviesPagination />
+    <MoviesPagination
+      :current-page="currentPage"
+      :per-page="moviesPerPage"
+      :pages="Math.ceil(moviesLength / moviesPerPage)"
+      @pageChanged="onPageChanged" />
   </div>
 </template>
 
@@ -25,13 +29,17 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("movies", ["moviesList"]),
+    ...mapGetters("movies", ["moviesList", "currentPage", "moviesPerPage", "moviesLength"]),
   },
   methods: {
-    ...mapActions("movies", ["fetchMovies"]),
+    ...mapActions("movies", ["changeCurrentPage"]),
     onChangePoster(poster) {
       this.posterBg = poster;
     },
+    onPageChanged(page){
+      console.log("onPageChanged", page);
+      this.changeCurrentPage(page);
+    }
   },
 };
 </script>
