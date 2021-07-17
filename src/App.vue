@@ -31,14 +31,23 @@ export default {
   computed: {
     ...mapGetters("movies", ["moviesList", "currentPage", "moviesPerPage", "moviesLength"]),
   },
+  watch: {
+    '$route.query': {
+      handler: "onPageQueryChange",
+      immediate: true,
+      deep: true,
+    },
+  },
   methods: {
     ...mapActions("movies", ["changeCurrentPage"]),
     onChangePoster(poster) {
       this.posterBg = poster;
     },
+    onPageQueryChange({ page = 1 } ){
+      this.changeCurrentPage(Number(page));
+    },
     onPageChanged(page){
-      console.log("onPageChanged", page);
-      this.changeCurrentPage(page);
+      this.$router.push({ query: { page } });
     }
   },
 };
@@ -50,5 +59,9 @@ export default {
 #app {
   position: relative;
   color: white;
+
+  img{
+    max-width: 100%;
+  }
 }
 </style>
