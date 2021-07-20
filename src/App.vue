@@ -1,6 +1,8 @@
 <template>
   <div class="container py-5">
+    <Loader />
     <PosterBg :poster="posterBg" />
+    <Header />
     <MoviesList :list="moviesList" @changePoster="onChangePoster" />
     <MoviesPagination
       :current-page="currentPage"
@@ -15,13 +17,17 @@ import { mapActions, mapGetters } from "vuex";
 import MoviesList from "./components/MoviesList";
 import PosterBg from "./components/PosterBg";
 import MoviesPagination from "./components/MoviesPagination";
+import Loader from "./components/Loader";
+import Header from "./components/Header";
 
 export default {
   name: "App",
   components: {
+    Loader,
     MoviesList,
     PosterBg,
     MoviesPagination,
+    Header,
   },
   data: () => {
     return {
@@ -63,5 +69,9 @@ export default {
   img{
     max-width: 100%;
   }
+}
+
+.container{
+  max-width: 960px;
 }
 </style>

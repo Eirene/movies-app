@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="mt-5">
     <div class="text-center mb-5">
-      <h3>IMDB Top 250</h3>
+      <h3>{{ listTitle }}</h3>
     </div>
 
     <div class="row">
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import MovieItem from "./MovieItem";
 
 export default {
@@ -34,8 +35,12 @@ export default {
     },
   },
   computed: {
+    ...mapGetters("movies", ["isSearch"]),
     isExist() {
       return Boolean(Object.keys(this.list).length);
+    },
+    listTitle() {
+      return this.isSearch ? "Search result" : "IMDB Top 250";
     },
   },
   methods: {
