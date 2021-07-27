@@ -16,7 +16,6 @@ const notificationStore = {
   },
   actions: {
     showNotify({ commit }, msg) {
-      console.log("actions showNotify");
       commit(SHOW_TOAST_NOTIFY, msg);
     }
   }

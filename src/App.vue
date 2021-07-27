@@ -43,7 +43,7 @@ export default {
   watch: {
     '$route.query': {
       handler: "onPageQueryChange",
-      immediate: true,
+      immediate: false,
       deep: true,
     },
   },
@@ -52,7 +52,7 @@ export default {
     onChangePoster(poster) {
       this.posterBg = poster;
     },
-    onPageQueryChange({ page = 1 } ){
+    onPageQueryChange({ page = 1 }){
       this.changeCurrentPage(Number(page));
     },
     onPageChanged(page){
