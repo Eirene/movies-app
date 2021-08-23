@@ -1,11 +1,14 @@
 <template>
-  <div v-if="isShowNotification" class="notification text-center">
-    <div class="alert alert-dismissible fade show w-100"
-         :class="variantNt"
-         role="alert">
-      {{ titleNt }}: {{ msgNt }}
-      <button @click="closeNotification"
-              type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <div v-if="isShowNotification"
+       class="fixed inset-x-0 flex items-end justify-center">
+    <div class="notification text-center">
+      <div class="alert alert-dismissible fade show w-100 relative"
+           :class="variantNt"
+           role="alert">
+        {{ titleNt }}: {{ msgNt }}
+        <button @click="closeNotification"
+                type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     </div>
   </div>
 </template>
@@ -51,16 +54,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.notification {
-  width: 480px;
-
-  position: fixed;
-  left: 50%;
-  margin-left: -240px;
-  top: 60px;
-  z-index: 10;
-}
-
-</style>

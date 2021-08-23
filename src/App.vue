@@ -1,15 +1,19 @@
 <template>
-  <div class="container py-5">
-    <Loader />
-    <Notification />
-    <PosterBg :poster="posterBg" />
+  <div>
     <Header />
-    <MoviesList :list="moviesList" @changePoster="onChangePoster" />
-    <MoviesPagination
-      :current-page="currentPage"
-      :per-page="moviesPerPage"
-      :pages="Math.ceil(moviesLength / moviesPerPage)"
-      @pageChanged="onPageChanged" />
+
+    <div class="container max-w-screen-lg mx-auto pt-32">
+      <Loader />
+      <Notification />
+      <MoviesList :list="moviesList" @changePoster="onChangePoster" />
+      <MoviesPagination
+        :current-page="currentPage"
+        :per-page="moviesPerPage"
+        :pages="Math.ceil(moviesLength / moviesPerPage)"
+        @pageChanged="onPageChanged" />
+    </div>
+
+    <PosterBg :poster="posterBg" />
   </div>
 </template>
 
@@ -67,14 +71,9 @@ export default {
 
 #app {
   position: relative;
-  color: white;
 
   img{
     max-width: 100%;
   }
-}
-
-.container{
-  max-width: 960px;
 }
 </style>

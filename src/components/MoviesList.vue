@@ -1,13 +1,12 @@
 <template>
-  <div class="mt-5">
+  <div class="z-10">
     <div class="text-center mb-5">
-      <h3>{{ listTitle }}</h3>
+      <h3 class="text-purple-50 text-2xl">{{ listTitle }}</h3>
     </div>
 
-    <div class="row">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <template v-if="isExist">
         <div
-          class="col-12 col-sm-6 col-md- col-lg-3 mb-3"
           v-for="(movie, key) in list"
           :key="key"
         >
@@ -24,14 +23,17 @@
   <!-- Modal -->
   <div v-if="isShowInfoModal">
     <div class="modal fade" :class="isModalShow" :id="movieInfoModalID" tabindex="-1">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content text-dark">
-          <div class="modal-header">
-            <button @click="closeModal"
-                    type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <MovieInfo :movie="selectedMovie" />
+      <div class="fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+          <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden
+          shadow-xl transform transition-all md:max-w-5xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <button @click="closeModal" type="button" class="btn-close"></button>
+              <div>
+                <MovieInfo :movie="selectedMovie" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -82,9 +84,6 @@ export default {
   methods: {
     onShowMovieInfo(id) {
       this.selectedMovieID = id;
-      this.isShowInfoModal = true;
-    },
-    openModal() {
       this.isShowInfoModal = true;
     },
     closeModal() {

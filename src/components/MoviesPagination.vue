@@ -1,5 +1,5 @@
 <template>
-  <div class="movies-pagination mt-5 d-flex justify-content-center">
+  <div class="movies-pagination py-10 flex justify-center">
     <v-pagination
       v-model="currentPageModel"
       :pages="pages"
@@ -55,12 +55,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.movies-pagination ::v-deep(.Page) {
-  padding: 0.5rem;
-  width: 2rem;
-  height: 2rem;
-  color: white;
-}
-</style>

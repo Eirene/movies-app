@@ -1,23 +1,23 @@
 <template>
   <div class="movie-info-wrap">
     <div class="movie-info-content">
-      <div class="row">
-        <div class="col-sm-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-1">
           <div class="movie-poster-wrap">
             <div class="movie-poster" :style="posterStyle"></div>
           </div>
         </div>
-        <div class="col-sm-8">
-          <h3 class="movie-title">{{ movie.Title }}</h3>
+        <div class="md:col-span-2">
+          <h3 class="text-5xl tracking-wide mb-6">{{ movie.Title }}</h3>
 
           <p class="movie-description">{{ movie.Plot }}</p>
-          <div class="mt-3 mb-4">
-            <div class="badge bg-success me-2">{{ movie.Year }}</div>
-            <div class="badge bg-success me-2">{{ movie.Runtime }}</div>
-            <div class="badge bg-success me-2">{{ movie.Genre }}</div>
-            <div class="badge bg-success me-2">{{ movie.Language }}</div>
+          <div class="my-4">
+            <div class="movie-badge">{{ movie.Year }}</div>
+            <div class="movie-badge">{{ movie.Runtime }}</div>
+            <div class="movie-badge">{{ movie.Genre }}</div>
+            <div class="movie-badge">{{ movie.Language }}</div>
           </div>
-          <table class="table small">
+          <table class="movie-info-table">
             <tbody>
             <tr>
               <th>Production</th>
@@ -101,12 +101,6 @@ export default {
   height: 100%;
   background-size: cover;
   background-position: center center;
-}
-
-.movie-title {
-  font-size: 3.5rem;
-  font-weight: 300;
-  line-height: 1.2;
 }
 
 .b-rating-star ::v-deep(.movie-rating),
